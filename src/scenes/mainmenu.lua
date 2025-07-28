@@ -147,9 +147,15 @@ local function newsEntry(data)
 
             imgholder.children[1]:removeSelf()
             if img then
-                img = uie.image(img):with({
-                    scaleRoundAuto = "auto"
+                img = uie.clickableImage(
+                    function()
+                        utils.openURL(data.link)
+                    end,
+                    img
+                ):with({
+                    scaleRoundAuto = "auto",
                 })
+
                 if img.image:getWidth() > (256 - 8 * 2) then
                     img.scale = (256 - 8 * 2) / img.image:getWidth()
                 end
